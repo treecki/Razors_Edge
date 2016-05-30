@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 
 public class Node{
+
+	// Implemented foobar(); method with given parameters (May 29th)
+
 	public List<Node> neighbours;
 	public int x;
 	public int y;
