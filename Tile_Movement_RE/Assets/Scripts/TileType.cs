@@ -3,7 +3,10 @@ using System.Collections;
 
 [System.Serializable]
 public class TileType {
-	//Alex is fat
+
+	// This is the code for individual tiles...
+
+
 	public string name;
 	public GameObject tileVisualPrefab;
 	public float movementCost = 1;

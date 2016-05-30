@@ -137,6 +137,7 @@ public class TileMap : MonoBehaviour {
 	{
 		return new Vector3(x, y, 0);
 	}
+
 	public void GeneratePathTo(int x, int y){
 		//Clear out Unit's old path
 		selectedUnit.GetComponent<Unit> ().currentPath = null;
