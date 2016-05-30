@@ -174,15 +174,18 @@ MonoBehaviour:
   - name: Grass
     tileVisualPrefab: {fileID: 178606, guid: cd007f7b1d60d064cb9a4e4912ed3a80, type: 2}
     movementCost: 1
-    isWalkable: 0
+    isWalkable: 1
+    percentChance: 0
   - name: Water
     tileVisualPrefab: {fileID: 118544, guid: 0ce7bd39432509547bbec9e51bc20137, type: 2}
     movementCost: 2
-    isWalkable: 0
+    isWalkable: 1
+    percentChance: 0
   - name: Mountain
     tileVisualPrefab: {fileID: 186044, guid: 54af48489f95a484981fa11902a94f5e, type: 2}
     movementCost: 1e+14
-    isWalkable: 1
+    isWalkable: 0
+    percentChance: 0
 --- !u!1 &517733545
 GameObject:
   m_ObjectHideFlags: 0
