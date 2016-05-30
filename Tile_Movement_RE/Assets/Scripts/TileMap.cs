@@ -70,6 +70,10 @@ public class TileMap : MonoBehaviour {
 	public float CostToEnterTile(int sourceX, int sourceY, int targetX, int targetY){
 		TileType tt = tileTypes [tiles [targetX, targetY]];
 
+		if (UnitCanEnterTile(targetX, targetY) == false) {
+			return Mathf.Infinity;
+		}
+
 		float cost = tt.movementCost;
 
 		if (sourceX != targetX && sourceY != targetY) {
@@ -138,9 +142,19 @@ public class TileMap : MonoBehaviour {
 		return new Vector3(x, y, 0);
 	}
 
+	public bool UnitCanEnterTile(int x, int y){
+		//test unit's walk type against various terrain to see if they can enter the tile
+		return tileTypes[tiles[x, y]].isWalkable;
+	}
+
 	public void GeneratePathTo(int x, int y){
 		//Clear out Unit's old path
 		selectedUnit.GetComponent<Unit> ().currentPath = null;
+
+		if (UnitCanEnterTile (x, y) == false) {
+			//Player clicked on an unwalkable tile
+			return;
+		}
 
 		Dictionary<Node, float> dist = new Dictionary<Node, float>();
 		Dictionary<Node, Node> prev = new Dictionary<Node, Node>();
