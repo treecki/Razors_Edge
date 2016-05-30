@@ -9,6 +9,8 @@ public class Unit : MonoBehaviour {
 
 	public List<Node> currentPath = null;
 
+	int moveSpeed = 2;
+
 	void Update(){
 		if (currentPath != null) {
 
@@ -29,13 +31,27 @@ public class Unit : MonoBehaviour {
 	}
 
 	public void MoveNextTile(){
-		if (currentPath == null)
-			return;
-		//Remove the old current/first node from path
-		currentPath.RemoveAt (0);
+		float remainingMovement = moveSpeed;
+		while (remainingMovement > 0) {
+			if (currentPath == null)
+				return;
+			//Get cost from current tile to next tile
+			remainingMovement-= map.CostToEnterTile(currentPath [0].x, currentPath [0].y, currentPath [1].x, currentPath [1].y);
 
-		//Now grab the new first node and move us to that position
-		transform.position = map.TileCoordToWorldCoord (currentPath [0].x, currentPath [0].y);
+			//Move us to the next tile in the sequence
+			tileX = currentPath[1].x;
+			tileY = currentPath [1].y;
+			transform.position = map.TileCoordToWorldCoord (tileX, tileY);
+
+			//Remove the old current/first node from path
+			currentPath.RemoveAt (0);
+
+			if (currentPath.Count == 1) {
+				//We only have one tile left in the path, and that tilemust be the desitnation and we are standing on it.
+				//So we are clearing the pathfinding info
+				currentPath = null;
+			} 
+		}
 	}
 
 }
